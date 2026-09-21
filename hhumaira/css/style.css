@@ -16,7 +16,7 @@ body {
 }
 
 /* Home page */
-
+/*
 .home {
     min-height: 100vh;
     display: flex;
@@ -46,7 +46,7 @@ body {
     gap: 25px;
     justify-content: center;
 }
-
+*/
 .resume-card {
     width: 300px;
     padding: 40px 25px;
