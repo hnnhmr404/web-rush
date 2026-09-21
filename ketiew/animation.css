@@ -1,0 +1,76 @@
+.weather-background
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+	animation: globalSeasonCycle 40s linear infinite;
+}
+
+.particle-container
+{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.particle
+{
+	position: absolute;
+	top: -5%;
+	pointer-events: none;
+	animation: 
+		particleFall 9s linear infinite,
+		particleSeasonCycle 40s linear infinite;
+}
+
+.particle:nth-child(1)  { left: 10%;  animation-delay: 0s, 0s;     animation-duration: 8s, 40s;  --drift: 40px;  }
+.particle:nth-child(2)  { left: 25%;  animation-delay: -2s, 0s;    animation-duration: 11s, 40s; --drift: -50px; }
+.particle:nth-child(3)  { left: 40%;  animation-delay: -4s, 0s;    animation-duration: 7s, 40s;  --drift: 30px;  }
+.particle:nth-child(4)  { left: 55%;  animation-delay: -1s, 0s;    animation-duration: 10s, 40s; --drift: -35px; }
+.particle:nth-child(5)  { left: 70%;  animation-delay: -5s, 0s;    animation-duration: 9s, 40s;  --drift: 60px;  }
+.particle:nth-child(6)  { left: 85%;  animation-delay: -3s, 0s;    animation-duration: 12s, 40s; --drift: -25px; }
+.particle:nth-child(7)  { left: 95%;  animation-delay: -6s, 0s;    animation-duration: 8.5s, 40s;--drift: 45px;  }
+.particle:nth-child(8)  { left: 18%;  animation-delay: -1.5s, 0s;  animation-duration: 9.5s, 40s;--drift: -40px; }
+.particle:nth-child(9)  { left: 63%;  animation-delay: -3.5s, 0s;  animation-duration: 7.5s, 40s;--drift: 20px;  }
+.particle:nth-child(10) { left: 78%;  animation-delay: -4.5s, 0s;  animation-duration: 10.5s, 40s;--drift: -60px; }
+
+@keyframes particleFall
+{
+	0% { transform: translateY(0vh) translateX(0) rotate(0deg); opacity: 0; }
+	10% { opacity: 0.9; }
+	90% { opacity: 0.9; }
+	100% { transform: translateY(110vh) translateX(var(--drift)) rotate(360deg); opacity: 0; }
+}
+
+@keyframes globalSeasonCycle
+{
+	0%, 22% { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); }
+	25%, 47% { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); }
+	50%, 72% { background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%); }
+	75%, 97% { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); }
+	100% { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); }
+}
+
+@keyframes particleSeasonCycle
+{
+	0%, 22% { width: 8px; height: 8px; background: #ffffff; border-radius: 50%; box-shadow: 0 0 4px rgba(255,255,255,0.8); clip-path: none; }
+	25%, 47% { width: 14px; height: 11px; background: #f472b6; border-radius: 70% 30% 70% 40% / 50% 60% 40% 50%; box-shadow: none; clip-path: none; }
+	50%, 72% { width: 5px; height: 5px; background: #f59e0b; border-radius: 50%; box-shadow: 0 0 12px 4px #fbbf24, 0 0 4px 1px #f59e0b; clip-path: none; }
+	75%, 97% { width: 16px; height: 16px; background: #c2410c; border-radius: 0; box-shadow: none; clip-path: polygon(10% 90%, 0% 40%, 30% 20%, 50% 0%, 70% 20%, 100% 40%, 90% 90%, 50% 70%); }
+	100% { width: 8px; height: 8px; background: #ffffff; border-radius: 50%; box-shadow: 0 0 4px rgba(255,255,255,0.8); clip-path: none; }
+}
+
+@media (prefers-reduced-motion: reduce)
+{
+	.weather-background, .particle { animation: none !important; }
+	.weather-background { background: #f1f5f9 !important; }
+	.particle-container { display: none !important; }
+}
